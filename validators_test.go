@@ -454,6 +454,9 @@ func TestStringCheck(t *testing.T) {
 	// UUID3
 	is.True(IsUUID("e0f98f02-6703-365c-9a42-4a0749f76068"))
 	is.True(IsUUID3("e0f98f02-6703-365c-9a42-4a0749f76068"))
+	// RFC 4122 requires the variant bits of the 4th group to be 10xx
+	is.False(IsUUID3("e0f98f02-6703-365c-1a42-4a0749f76068"))
+	is.False(IsUUID3("e0f98f02-6703-465c-9a42-4a0749f76068")) // a v4 UUID
 	is.False(IsUUID3(""))
 
 	// UUID4
